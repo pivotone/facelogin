@@ -1,8 +1,46 @@
 package com.pivot.schoolvideos.dao;
 
+import java.util.Date;
+
 public class Video {
     private int userID;
     private String videoAddr;
+    private String videoName;
+    private String videoDesc;
+    private Date videoDate;
+    private String studentID;
+
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
+    }
+
+    public String getVideoDesc() {
+        return videoDesc;
+    }
+
+    public void setVideoDesc(String videoDesc) {
+        this.videoDesc = videoDesc;
+    }
+
+    public Date getVideoDate() {
+        return videoDate;
+    }
+
+    public void setVideoDate(Date videoDate) {
+        this.videoDate = videoDate;
+    }
+
+    public String getStudentID() {
+        return studentID;
+    }
+
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
 
     public int getUserID() {
         return userID;
