@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface StudentMapper {
-    @Select("select *from `student` where studentID = #{studentID}")
+    @Select("select *from `student` where `studentID` = #{studentID}")
     Student getStudent(String studentID);
 
     @Select("select *from `student` where classID = #{classID}")

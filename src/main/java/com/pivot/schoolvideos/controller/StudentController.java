@@ -4,6 +4,7 @@ import com.pivot.schoolvideos.dao.Student;
 import com.pivot.schoolvideos.entity.Result;
 import com.pivot.schoolvideos.service.StudentService;
 import com.pivot.schoolvideos.utils.ResultUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,11 +16,12 @@ import java.util.List;
 public class StudentController {
     final private StudentService studentService;
 
+    @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
-    @PostMapping(value = "/get", produces = "application/json:charset=UTF-8")
+    @PostMapping(value = "/get", produces = "application/json;charset=UTF-8")
     public Result getStudent(String studentID){
         Student student = studentService.getStudent(studentID);
         if(student.getStudentID()==null) return ResultUtils.error("3000","查询出错或此人不存在");
