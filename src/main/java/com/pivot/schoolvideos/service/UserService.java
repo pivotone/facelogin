@@ -18,6 +18,7 @@ public class UserService {
     @Transactional
     public User login(String account, String password) {
         User user = userMapper.getUser(account);
+        if(user.getAccount()==null) return new User();
         if(md5.verify(password,user.getPassword())) return user;
         return new User();
     }

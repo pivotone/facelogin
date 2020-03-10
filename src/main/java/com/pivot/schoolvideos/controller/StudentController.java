@@ -1,5 +1,6 @@
 package com.pivot.schoolvideos.controller;
 
+import com.pivot.schoolvideos.dao.StuInfo;
 import com.pivot.schoolvideos.dao.Student;
 import com.pivot.schoolvideos.entity.Result;
 import com.pivot.schoolvideos.service.StudentService;
@@ -23,14 +24,14 @@ public class StudentController {
 
     @PostMapping(value = "/get", produces = "application/json;charset=UTF-8")
     public Result getStudent(String studentID){
-        Student student = studentService.getStudent(studentID);
+        StuInfo student = studentService.getStudent(studentID);
         if(student.getStudentID()==null) return ResultUtils.error("3000","查询出错或此人不存在");
         else return ResultUtils.success(student);
     }
 
     @PostMapping(value = "/getClass", produces = "application/json;charset=UTF-8")
     public Result getStudents(String classID){
-        List<Student> students = studentService.getStudents(classID);
+        List<StuInfo> students = studentService.getStudents(classID);
         if(students.size()==0) return ResultUtils.error("3100","查询出错或班级暂无成员");
         else return ResultUtils.success(students);
     }

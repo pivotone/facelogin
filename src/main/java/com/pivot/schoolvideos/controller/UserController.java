@@ -33,10 +33,12 @@ public class UserController {
         else return ResultUtils.success(user);
     }
 
-    @PostMapping(value = "/signup")
+    @PostMapping(value = "/signup", produces = "application/json;charset=UTF-8")
     public Result signUp(String username,String password,int age,int roleID,
                         String sex,String account){
         User user = new User();
+        logger.info("年龄是："+ age);
+        logger.info("角色是："+ roleID);
         user.setAccount(account); user.setAge(age); user.setPassword(password); user.setRoleID(roleID);
         user.setSex(sex); user.setUsername(username);
         int result = userService.sigup(user);

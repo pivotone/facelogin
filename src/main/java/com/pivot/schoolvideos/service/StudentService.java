@@ -1,5 +1,6 @@
 package com.pivot.schoolvideos.service;
 
+import com.pivot.schoolvideos.dao.StuInfo;
 import com.pivot.schoolvideos.dao.Student;
 import com.pivot.schoolvideos.mapper.StudentMapper;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,12 @@ public class StudentService {
     }
 
     @Transactional
-    public Student getStudent(String studentID){
+    public StuInfo getStudent(String studentID){
         return studentMapper.getStudent(studentID);
     }
 
     @Transactional
-    public List<Student> getStudents(String classID){
+    public List<StuInfo> getStudents(String classID){
         return studentMapper.getStudents(classID);
     }
 

@@ -1,5 +1,6 @@
 package com.pivot.schoolvideos.mapper;
 
+import com.pivot.schoolvideos.dao.StuInfo;
 import com.pivot.schoolvideos.dao.Student;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -9,11 +10,11 @@ import java.util.List;
 @Mapper
 @Repository
 public interface StudentMapper {
-    @Select("select *from `student` where `studentID` = #{studentID}")
-    Student getStudent(String studentID);
+    @Select("select *from `stuinfo` where `studentID` = #{studentID}")
+    StuInfo getStudent(String studentID);
 
     @Select("select *from `student` where classID = #{classID}")
-    List<Student> getStudents(String classID);
+    List<StuInfo> getStudents(String classID);
 
     @Insert("insert into `student`(`studentID`,`studentName`,`studentSex`,`studentAge`,`classID`)" +
             " values(#{studentID},#{studentName},#{studentSex},#{studentAge},#{classID})")

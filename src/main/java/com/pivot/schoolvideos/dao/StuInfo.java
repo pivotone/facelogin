@@ -1,15 +1,20 @@
 package com.pivot.schoolvideos.dao;
 
-public class Student {
+public class StuInfo {
     private String studentID;
     private String studentName;
     private String studentSex;
     private int studentAge;
     private String classID;
+    private String className;
     private String tel;
 
     public String getTel() {
         return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public String getStudentID() {
@@ -50,5 +55,13 @@ public class Student {
 
     public void setClassID(String classID) {
         this.classID = classID;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }
