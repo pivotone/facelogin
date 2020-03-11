@@ -1,5 +1,7 @@
 package com.pivot.schoolvideos.dao;
 
+import java.util.Date;
+
 public class Student {
     private String studentID;
     private String studentName;
@@ -7,6 +9,19 @@ public class Student {
     private int studentAge;
     private String classID;
     private String tel;
+    private Date createDate;
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
     public String getTel() {
         return tel;
