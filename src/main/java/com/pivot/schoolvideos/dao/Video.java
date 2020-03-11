@@ -9,6 +9,15 @@ public class Video {
     private String videoDesc;
     private Date videoDate;
     private String studentID;
+    private String picAddr;
+
+    public String getPicAddr() {
+        return picAddr;
+    }
+
+    public void setPicAddr(String picAddr) {
+        this.picAddr = picAddr;
+    }
 
     public String getVideoName() {
         return videoName;
