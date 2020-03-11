@@ -24,6 +24,7 @@ public interface StudentMapper {
     int delStudent(String studentID);
 
     @Update("update `student` set `studentName` = #{studentName},`studentAge` = #{studentAge}," +
-            "`studentSex` = #{studentSex},`classID` = #{classID} where `studentID` = #{studentID}")
+            "`studentSex` = #{studentSex},`classID` = #{classID},`tel` = #{tel} " +
+            "where `studentID` = #{studentID}")
     int updateStudent(Student student);
 }

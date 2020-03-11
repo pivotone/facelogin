@@ -55,10 +55,11 @@ public class StudentController {
     }
 
     @PostMapping(value = "/update", produces = "application/json;charset=UTF-8")
-    public Result updateStudent(String studentID,String studentName,String studentSex,int studentAge,String classID){
+    public Result updateStudent(String studentID,String studentName,
+                                String studentSex,int studentAge,String classID,String tel){
         Student student = new Student();
         student.setClassID(classID); student.setStudentAge(studentAge); student.setStudentID(studentID);
-        student.setStudentSex(studentSex); student.setStudentName(studentName);
+        student.setStudentSex(studentSex); student.setStudentName(studentName); student.setTel(tel);
         int result = studentService.updateStudent(student);
         if(result == 0) return ResultUtils.error("3200","修改错误");
         else return ResultUtils.success();
