@@ -5,6 +5,15 @@ public class ClassInfo {
     private String className;
     private String teacherID;
     private String username;
+    private int number;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
     public String getClassID() {
         return classID;

@@ -13,6 +13,9 @@ public interface ClassMapper {
     @Select("select *from classinfo where `classID` = #{classID}")
     ClassInfo getClass(String classID);
 
+    @Select("select *from classinfo where `teacherID` = #{userID}")
+    List<ClassInfo> teachClass(String userID);
+
     @Select("select *from classinfo")
     List<ClassInfo> getAll();
 

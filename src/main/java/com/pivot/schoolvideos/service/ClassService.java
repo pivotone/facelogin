@@ -17,6 +17,11 @@ public class ClassService {
     }
 
     @Transactional
+    public List<ClassInfo> teachClass(String userID){
+        return classMapper.teachClass(userID);
+    }
+
+    @Transactional
     public ClassInfo getClass(String classID){
         return classMapper.getClass(classID);
     }

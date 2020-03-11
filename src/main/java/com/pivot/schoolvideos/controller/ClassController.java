@@ -27,6 +27,13 @@ public class ClassController {
         else return ResultUtils.success(classInfo);
     }
 
+    @PostMapping(value = "/teachGet",produces = "application/json;charset=UTF-8")
+    public Result teachClass(String userID){
+        List<ClassInfo> classInfos = classService.teachClass(userID);
+        if(classInfos.size()==0) return ResultUtils.error("4100","暂无班级");
+        return ResultUtils.success(classInfos);
+    }
+
     @PostMapping(value = "/getAll",produces = "application/json;charset=UTF-8")
     public Result getAll(){
         List<ClassInfo> classInfos = classService.getAll();
