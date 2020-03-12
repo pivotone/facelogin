@@ -12,12 +12,12 @@ import java.util.List;
 @Mapper
 @Repository
 public interface SignMapper {
-    @Insert("insert into signin(`creator`,`createDate`,`description`,`duration`)" +
-            " values(#{creator},#{createDate},#{description},#{duration})")
+    @Insert("insert into signin(`creator`,`createDate`,`description`,`duration`,createDate)" +
+            " values(#{creator},#{createDate},#{description},#{duration},NOW())")
     int setSign(SignIn signIn);
 
-    @Insert("insert into signrecord(`studentID`,`studentName`,`signID`) " +
-            "values(#{studentID},#{studentName},#{signID})")
+    @Insert("insert into signrecord(`studentID`,`studentName`,`signID`,signDate) " +
+            "values(#{studentID},#{studentName},#{signID},NOW())")
     int signIn(SignRecord signRecord);
 
     @Select("select *from signin where creator = #{creator}")

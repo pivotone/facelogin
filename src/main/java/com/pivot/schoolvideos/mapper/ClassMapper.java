@@ -19,7 +19,8 @@ public interface ClassMapper {
     @Select("select *from classinfo")
     List<ClassInfo> getAll();
 
-    @Insert("insert into `class`(classID,className,teacherID) values(#{classID},#{className},#{teacherID})")
+    @Insert("insert into `class`(classID,className,teacherID,createDate) " +
+            "values(#{classID},#{className},#{teacherID},NOW())")
     int setClass(Class cla);
 
     @Update("update `class` set className = #{className},teacherID = #{teacherID} where classID = #{classID}")

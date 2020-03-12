@@ -16,8 +16,8 @@ public interface StudentMapper {
     @Select("select *from `student` where classID = #{classID}")
     List<StuInfo> getStudents(String classID);
 
-    @Insert("insert into `student`(`studentID`,`studentName`,`studentSex`,`studentAge`,`classID`,`tel`)" +
-            " values(#{studentID},#{studentName},#{studentSex},#{studentAge},#{classID},#{tel})")
+    @Insert("insert into `student`(`studentID`,`studentName`,`studentSex`,`studentAge`,`classID`,`tel`,createDate)" +
+            " values(#{studentID},#{studentName},#{studentSex},#{studentAge},#{classID},#{tel},NOW())")
     int setStudent(Student student);
 
     @Delete("delete from `student` where studentID = #{studentID}")
