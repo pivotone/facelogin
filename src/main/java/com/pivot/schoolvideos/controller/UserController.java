@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -31,6 +32,12 @@ public class UserController {
         user.setPassword(null);
         if(user.getAccount()==null) return ResultUtils.error("1000","账号或密码错误");
         else return ResultUtils.success(user);
+    }
+
+    @PostMapping(value = "/getTeacher", produces = "application/json;charset=UTF-8")
+    public Result getTeacher(){
+        List<User> users = userService.getTeacher();
+        return ResultUtils.success(users);
     }
 
     @PostMapping(value = "/signup", produces = "application/json;charset=UTF-8")

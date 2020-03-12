@@ -6,6 +6,8 @@ import com.pivot.schoolvideos.utils.MD5;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class UserService {
     final private UserMapper userMapper;
@@ -21,6 +23,11 @@ public class UserService {
         if(user.getAccount()==null) return new User();
         if(md5.verify(password,user.getPassword())) return user;
         return new User();
+    }
+
+    @Transactional
+    public List<User> getTeacher(){
+        return userMapper.getAllTeacher();
     }
 
     @Transactional
