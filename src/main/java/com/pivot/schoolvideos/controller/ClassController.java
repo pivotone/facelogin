@@ -2,6 +2,8 @@ package com.pivot.schoolvideos.controller;
 
 import com.pivot.schoolvideos.dao.Class;
 import com.pivot.schoolvideos.dao.ClassInfo;
+import com.pivot.schoolvideos.dao.StuInfo;
+import com.pivot.schoolvideos.dao.Student;
 import com.pivot.schoolvideos.entity.Result;
 import com.pivot.schoolvideos.service.ClassService;
 import com.pivot.schoolvideos.utils.ResultUtils;
@@ -30,6 +32,13 @@ public class ClassController {
     @PostMapping(value = "/teachGet",produces = "application/json;charset=UTF-8")
     public Result teachClass(String userID){
         List<ClassInfo> classInfos = classService.teachClass(userID);
+        if(classInfos.size()==0) return ResultUtils.error("4100","暂无班级");
+        return ResultUtils.success(classInfos);
+    }
+
+    @PostMapping(value = "/teachAll",produces = "application/json;charset=UTF-8")
+    public Result teachStudent(String userID){
+        List<StuInfo> classInfos = classService.teachStudent(userID);
         if(classInfos.size()==0) return ResultUtils.error("4100","暂无班级");
         return ResultUtils.success(classInfos);
     }

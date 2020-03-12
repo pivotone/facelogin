@@ -2,6 +2,7 @@ package com.pivot.schoolvideos.mapper;
 
 import com.pivot.schoolvideos.dao.Class;
 import com.pivot.schoolvideos.dao.ClassInfo;
+import com.pivot.schoolvideos.dao.StuInfo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,9 @@ public interface ClassMapper {
 
     @Select("select *from classinfo where `teacherID` = #{userID}")
     List<ClassInfo> teachClass(String userID);
+
+    @Select("select *from stuinfo where `teacherID` = #{userID}")
+    List<StuInfo> teachStudent(String userID);
 
     @Select("select *from classinfo")
     List<ClassInfo> getAll();

@@ -2,6 +2,7 @@ package com.pivot.schoolvideos.service;
 
 import com.pivot.schoolvideos.dao.Class;
 import com.pivot.schoolvideos.dao.ClassInfo;
+import com.pivot.schoolvideos.dao.StuInfo;
 import com.pivot.schoolvideos.mapper.ClassMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,11 @@ public class ClassService {
     @Transactional
     public ClassInfo getClass(String classID){
         return classMapper.getClass(classID);
+    }
+
+    @Transactional
+    public List<StuInfo> teachStudent(String userID){
+        return classMapper.teachStudent(userID);
     }
 
     @Transactional
