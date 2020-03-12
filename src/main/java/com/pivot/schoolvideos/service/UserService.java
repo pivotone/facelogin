@@ -32,6 +32,7 @@ public class UserService {
 
     @Transactional
     public int sigup(User user){
+        if(userMapper.getUser(user.getAccount())!=null) return 0x7fffff;
         user.setPassword(md5.getCiphertext(user.getPassword()));
         return userMapper.setUser(user);
     }

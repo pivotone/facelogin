@@ -49,7 +49,8 @@ public class UserController {
         user.setAccount(account); user.setAge(age); user.setPassword(password); user.setRoleID(roleID);
         user.setSex(sex); user.setUsername(username);
         int result = userService.sigup(user);
-        if(result!=0){
+        if(result == 0x7fffff) return ResultUtils.error("1200","账户已被注册");
+        else if(result != 0){
             user.setPassword(null);
             return ResultUtils.success(user);
         }else return ResultUtils.error("1100","注册失败");

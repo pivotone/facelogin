@@ -33,7 +33,7 @@ public class ClassService {
     }
 
     @Transactional
-    public List<ClassInfo> getAll(){
+    public List<Class> getAll(){
         return classMapper.getAll();
     }
 
