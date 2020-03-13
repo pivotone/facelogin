@@ -45,7 +45,7 @@ public class ClassController {
 
     @PostMapping(value = "/getAll",produces = "application/json;charset=UTF-8")
     public Result getAll(){
-        List<Class> classInfos = classService.getAll();
+        List<ClassInfo> classInfos = classService.getAll();
         if(classInfos.size()==0) return ResultUtils.error("4100","暂无班级");
         return ResultUtils.success(classInfos);
     }

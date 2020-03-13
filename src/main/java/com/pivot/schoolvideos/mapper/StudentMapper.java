@@ -13,7 +13,7 @@ public interface StudentMapper {
     @Select("select *from `stuinfo` where `studentID` = #{studentID}")
     StuInfo getStudent(String studentID);
 
-    @Select("select *from `student` where classID = #{classID}")
+    @Select("select *from `stuinfo` where classID = #{classID}")
     List<StuInfo> getStudents(String classID);
 
     @Insert("insert into `student`(`studentID`,`studentName`,`studentSex`,`studentAge`,`classID`,`tel`,createDate)" +

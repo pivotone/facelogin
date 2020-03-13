@@ -20,8 +20,8 @@ public interface ClassMapper {
     @Select("select *from stuinfo where `teacherID` = #{userID}")
     List<StuInfo> teachStudent(String userID);
 
-    @Select("select *from class")
-    List<Class> getAll();
+    @Select("select *from classinfo")
+    List<ClassInfo> getAll();
 
     @Insert("insert into `class`(classID,className,teacherID,createDate) " +
             "values(#{classID},#{className},#{teacherID},NOW())")

@@ -11,6 +11,24 @@ public class StuInfo {
     private String className;
     private String tel;
     private Date createDate;
+    private int teacherID;
+    private String teacherName;
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public int getTeacherID() {
+        return teacherID;
+    }
+
+    public void setTeacherID(int teacherID) {
+        this.teacherID = teacherID;
+    }
 
     public Date getCreateDate() {
         return createDate;
