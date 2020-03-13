@@ -37,10 +37,10 @@ public class StudentController {
     }
 
     @PostMapping(value = "/set", produces = "application/json;charset=UTF-8")
-    public Result setStudent(String studentID,String studentName,String studentSex
+    public Result setStudent(String studentName,String studentSex
             ,int studentAge,String classID,String tel){
         Student student = new Student();
-        student.setClassID(classID); student.setStudentAge(studentAge); student.setStudentID(studentID);
+        student.setClassID(classID); student.setStudentAge(studentAge);
         student.setStudentSex(studentSex); student.setStudentName(studentName); student.setTel(tel);
         int result = studentService.setStudent(student);
         if(result == 0) return ResultUtils.error("3200","插入错误");

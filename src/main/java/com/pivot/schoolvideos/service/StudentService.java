@@ -28,6 +28,7 @@ public class StudentService {
 
     @Transactional
     public int setStudent(Student student){
+        student.setStudentID(setStudentID(student.getClassID()));
         return studentMapper.setStudent(student);
     }
 
@@ -39,5 +40,17 @@ public class StudentService {
     @Transactional
     public int updateStudent(Student student){
         return studentMapper.updateStudent(student);
+    }
+
+    private String setStudentID(String classID){
+        int num = 1;
+        if(studentMapper.Students(classID).size()!=0){
+            num = Integer.parseInt(studentMapper.Students(classID)
+                    .get(studentMapper.Students(classID).size()-1).getStudentID().substring(4)) + 1;
+        }
+        StringBuilder ID = new StringBuilder(String.valueOf(num));
+        while(ID.length()<3) ID.insert(0, "0");
+        ID.insert(0,classID);
+        return String.valueOf(ID);
     }
 }

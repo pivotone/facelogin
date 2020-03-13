@@ -39,6 +39,7 @@ public class ClassService {
 
     @Transactional
     public int setClass(Class cla){
+        cla.setClassID(setClassID());
         return classMapper.setClass(cla);
     }
 
@@ -53,7 +54,10 @@ public class ClassService {
     }
 
     public String setClassID(){
-        int num = Integer.parseInt(classMapper.All().get(classMapper.All().size()-1).getClassID())+1;
+        int num = 1;
+        if(classMapper.All().size()!=0){
+            num = Integer.parseInt(classMapper.All().get(classMapper.All().size()-1).getClassID())+1;
+        }
         StringBuilder ID = new StringBuilder(String.valueOf(num));
         while(ID.length()<4) ID.insert(0, "0");
         return String.valueOf(ID);
