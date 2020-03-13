@@ -23,6 +23,9 @@ public interface ClassMapper {
     @Select("select *from classinfo")
     List<ClassInfo> getAll();
 
+    @Select("select *from classinfo order by classID")
+    List<ClassInfo> All();
+
     @Insert("insert into `class`(classID,className,teacherID,createDate) " +
             "values(#{classID},#{className},#{teacherID},NOW())")
     int setClass(Class cla);

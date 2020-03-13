@@ -51,9 +51,8 @@ public class ClassController {
     }
 
     @PostMapping(value = "/set",produces = "application/json;charset=UTF-8")
-    public Result setClass(String classID,String className,String teacherID){
-        Class cla = new Class();
-        cla.setClassID(classID); cla.setClassName(className); cla.setTeacherID(teacherID);
+    public Result setClass(String className,String teacherID){
+        Class cla = new Class(); cla.setClassName(className); cla.setTeacherID(teacherID);
         int result = classService.setClass(cla);
         if(result==0)return ResultUtils.error("4200","新增班级失败");
         return ResultUtils.success();

@@ -51,4 +51,11 @@ public class ClassService {
     public int delClass(String classID){
         return classMapper.delClass(classID);
     }
+
+    public String setClassID(){
+        int num = Integer.parseInt(classMapper.All().get(classMapper.All().size()-1).getClassID())+1;
+        StringBuilder ID = new StringBuilder(String.valueOf(num));
+        while(ID.length()<4) ID.insert(0, "0");
+        return String.valueOf(ID);
+    }
 }
