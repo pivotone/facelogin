@@ -36,4 +36,9 @@ public class UserService {
         user.setPassword(md5.getCiphertext(user.getPassword()));
         return userMapper.setUser(user);
     }
+
+    @Transactional
+    public int setFace(User user){
+        return userMapper.setFace(user);
+    }
 }

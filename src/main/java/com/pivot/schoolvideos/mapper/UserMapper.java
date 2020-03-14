@@ -4,6 +4,7 @@ import com.pivot.schoolvideos.dao.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,4 +21,7 @@ public interface UserMapper {
     @Insert("insert into user(`username`,`account`,`password`,`sex`,`age`,`roleID`,`facedata`) " +
             "values(#{username},#{account},#{password},#{sex},#{age},#{roleID},#{facedata})")
     int setUser(User user);
+
+    @Update("update user set facedata = #{facedata} where account = #{account}")
+    int setFace(User user);
 }

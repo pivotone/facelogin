@@ -10,6 +10,15 @@ public class Student {
     private String classID;
     private String tel;
     private Date createDate;
+    private int parentID;
+
+    public int getParentID() {
+        return parentID;
+    }
+
+    public void setParentID(int parentID) {
+        this.parentID = parentID;
+    }
 
     public void setTel(String tel) {
         this.tel = tel;
