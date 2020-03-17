@@ -41,4 +41,9 @@ public class UserService {
     public int setFace(User user){
         return userMapper.setFace(user);
     }
+
+    @Transactional
+    public int updateTeacher(User user){
+        return userMapper.updateTeacher(user);
+    }
 }

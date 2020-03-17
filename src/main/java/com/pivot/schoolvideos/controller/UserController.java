@@ -55,4 +55,11 @@ public class UserController {
             return ResultUtils.success(user);
         }else return ResultUtils.error("1100","注册失败");
     }
+
+    @PostMapping(value = "/updateTeacher", produces = "application/json;charset=UTF-8")
+    public Result updateTeacher(User user){
+        int result = userService.updateTeacher(user);
+        if(result==0) return ResultUtils.error("1300","更改信息失败");
+        return ResultUtils.success();
+    }
 }

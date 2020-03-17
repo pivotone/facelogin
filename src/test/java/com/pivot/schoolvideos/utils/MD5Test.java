@@ -9,7 +9,7 @@ class MD5Test {
     MD5 md5 = new MD5();
     @Test
     void getCiphertext() {
-        System.out.println(md5.getCiphertext("123456"));
+        System.out.println(md5.getCiphertext("1"));
     }
 
     @Test

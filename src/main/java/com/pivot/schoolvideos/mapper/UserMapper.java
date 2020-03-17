@@ -12,16 +12,25 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
+    //登录
     @Select("select *from user where account = #{account}")
     User getUser(String account);
 
+    // 获得所有教师
     @Select("select userID,username from user where roleID = 0")
     List<User> getAllTeacher();
 
+    //插入教师和家长注册
     @Insert("insert into user(`username`,`account`,`password`,`sex`,`age`,`roleID`,`facedata`) " +
             "values(#{username},#{account},#{password},#{sex},#{age},#{roleID},#{facedata})")
     int setUser(User user);
 
+    //上传人脸信息
     @Update("update user set facedata = #{facedata} where account = #{account}")
     int setFace(User user);
+
+    //更改教师
+    @Update("update user set username = #{username}, password = #{password}, age = #{age}, sex = #{sex}" +
+            " where userID = #{userID} and roleID = 0")
+    int updateTeacher(User user);
 }
