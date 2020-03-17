@@ -22,6 +22,7 @@ public class ClassController {
         this.classService = classService;
     }
 
+    //获得单个班级的信息
     @PostMapping(value = "/get",produces = "application/json;charset=UTF-8")
     public Result getClass(String classID){
         ClassInfo classInfo = classService.getClass(classID);
@@ -29,6 +30,7 @@ public class ClassController {
         else return ResultUtils.success(classInfo);
     }
 
+    //获得老师下属班级的信息
     @PostMapping(value = "/teachGet",produces = "application/json;charset=UTF-8")
     public Result teachClass(String userID){
         List<ClassInfo> classInfos = classService.teachClass(userID);
@@ -36,6 +38,7 @@ public class ClassController {
         return ResultUtils.success(classInfos);
     }
 
+    //获得老师所有学生
     @PostMapping(value = "/teachAll",produces = "application/json;charset=UTF-8")
     public Result teachStudent(String userID){
         List<StuInfo> classInfos = classService.teachStudent(userID);
@@ -43,6 +46,7 @@ public class ClassController {
         return ResultUtils.success(classInfos);
     }
 
+    //获得所有班级信息
     @PostMapping(value = "/getAll",produces = "application/json;charset=UTF-8")
     public Result getAll(){
         List<ClassInfo> classInfos = classService.getAll();
@@ -50,6 +54,7 @@ public class ClassController {
         return ResultUtils.success(classInfos);
     }
 
+    //新增班级
     @PostMapping(value = "/set",produces = "application/json;charset=UTF-8")
     public Result setClass(String className,String teacherID){
         Class cla = new Class(); cla.setClassName(className); cla.setTeacherID(teacherID);
@@ -58,6 +63,7 @@ public class ClassController {
         return ResultUtils.success();
     }
 
+    //更新班级
     @PostMapping(value = "/update",produces = "application/json;charset=UTF-8")
     public Result alterClass(String classID,String className,String teacherID){
         Class cla = new Class();
@@ -67,6 +73,7 @@ public class ClassController {
         return ResultUtils.success();
     }
 
+    //删除班级，慎用
     @PostMapping(value = "/del",produces = "application/json;charset=UTF-8")
     public Result delClass(String classID){
         int result = classService.delClass(classID);

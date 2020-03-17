@@ -22,6 +22,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    //获得单个学生的信息
     @PostMapping(value = "/get", produces = "application/json;charset=UTF-8")
     public Result getStudent(String studentID){
         StuInfo student = studentService.getStudent(studentID);
@@ -29,6 +30,7 @@ public class StudentController {
         else return ResultUtils.success(student);
     }
 
+    //获得一个班级的学生信息
     @PostMapping(value = "/getClass", produces = "application/json;charset=UTF-8")
     public Result getStudents(String classID){
         List<StuInfo> students = studentService.getStudents(classID);
@@ -36,6 +38,7 @@ public class StudentController {
         else return ResultUtils.success(students);
     }
 
+    //新增学生
     @PostMapping(value = "/set", produces = "application/json;charset=UTF-8")
     public Result setStudent(String studentName,String studentSex
             ,int studentAge,String classID,String tel){
@@ -47,6 +50,7 @@ public class StudentController {
         else return ResultUtils.success();
     }
 
+    //删除学生，慎用
     @PostMapping(value = "/del", produces = "application/json;charset=UTF-8")
     public Result delStudent(String studentID){
         int result = studentService.delStudent(studentID);
@@ -54,6 +58,7 @@ public class StudentController {
         else return ResultUtils.success();
     }
 
+    //更新信息
     @PostMapping(value = "/update", produces = "application/json;charset=UTF-8")
     public Result updateStudent(String studentID,String studentName,
                                 String studentSex,int studentAge,String classID,String tel){

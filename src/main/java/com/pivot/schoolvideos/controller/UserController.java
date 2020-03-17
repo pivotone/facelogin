@@ -34,6 +34,7 @@ public class UserController {
         else return ResultUtils.success(user);
     }
 
+    //获得所有教师的信息
     @PostMapping(value = "/getTeacher", produces = "application/json;charset=UTF-8")
     public Result getTeacher(){
         List<User> users = userService.getTeacher();
@@ -56,6 +57,7 @@ public class UserController {
         }else return ResultUtils.error("1100","注册失败");
     }
 
+    //更新老师信息
     @PostMapping(value = "/updateTeacher", produces = "application/json;charset=UTF-8")
     public Result updateTeacher(User user){
         int result = userService.updateTeacher(user);
