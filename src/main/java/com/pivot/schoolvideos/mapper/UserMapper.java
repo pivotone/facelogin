@@ -17,7 +17,7 @@ public interface UserMapper {
     User getUser(String account);
 
     // 获得所有教师
-    @Select("select userID,username from user where roleID = 0")
+    @Select("select *from user where roleID = 0")
     List<User> getAllTeacher();
 
     //插入教师和家长注册
