@@ -54,6 +54,7 @@ public class UserService {
 
     @Transactional
     public int updateTeacher(User user){
+        user.setPassword(md5.getCiphertext(user.getPassword()));
         return userMapper.updateTeacher(user);
     }
 }
