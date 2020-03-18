@@ -1,5 +1,6 @@
 package com.pivot.schoolvideos.service;
 
+import com.pivot.schoolvideos.dao.Student;
 import com.pivot.schoolvideos.dao.User;
 import com.pivot.schoolvideos.mapper.UserMapper;
 import com.pivot.schoolvideos.utils.MD5;
@@ -31,7 +32,7 @@ public class UserService {
     }
 
     @Transactional
-    public int getChild(String account){
+    public List<Student> getChild(String account){
         return userMapper.getChild(account);
     }
 

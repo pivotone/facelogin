@@ -44,7 +44,7 @@ public class UserController {
     @PostMapping(value = "/signup", produces = "application/json;charset=UTF-8")
     public Result signUp(String username,String password,int age,int roleID,
                         String sex,String account){
-        if(roleID==1&&userService.getChild(account)==0) return ResultUtils.error("1400","你的孩子暂未登记");
+        if(roleID==1&&userService.getChild(account).size()==0) return ResultUtils.error("1400","你的孩子暂未登记");
         User user = new User();
         logger.info("年龄是："+ age);
         logger.info("角色是："+ roleID);

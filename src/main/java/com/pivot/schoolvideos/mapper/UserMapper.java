@@ -1,10 +1,8 @@
 package com.pivot.schoolvideos.mapper;
 
+import com.pivot.schoolvideos.dao.Student;
 import com.pivot.schoolvideos.dao.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,7 +15,7 @@ public interface UserMapper {
     User getUser(String account);
 
     @Select("select *from student where tel = #{account}")
-    int getChild(String account);
+    List<Student> getChild(String account);
 
     // 获得所有教师
     @Select("select *from user where roleID = 0")
@@ -29,6 +27,7 @@ public interface UserMapper {
     //插入教师和家长注册
     @Insert("insert into user(`username`,`account`,`password`,`sex`,`age`,`roleID`,`facedata`) " +
             "values(#{username},#{account},#{password},#{sex},#{age},#{roleID},#{facedata})")
+    @Options(useGeneratedKeys = true, keyProperty = "userID", keyColumn = "userID")
     int setUser(User user);
 
     //上传人脸信息
