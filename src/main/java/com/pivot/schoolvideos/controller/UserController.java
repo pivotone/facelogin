@@ -44,6 +44,7 @@ public class UserController {
     @PostMapping(value = "/signup", produces = "application/json;charset=UTF-8")
     public Result signUp(String username,String password,int age,int roleID,
                         String sex,String account){
+        if(roleID==1&&userService.getChild(account)==0) return ResultUtils.error("1400","你的孩子暂未登记");
         User user = new User();
         logger.info("年龄是："+ age);
         logger.info("角色是："+ roleID);
@@ -53,6 +54,10 @@ public class UserController {
         if(result == 0x7fffff) return ResultUtils.error("1200","账户已被注册");
         else if(result != 0){
             user.setPassword(null);
+            if(roleID == 1) {
+                int res = userService.joinParent(user);
+                if(res==0) return ResultUtils.error("1500","用户注册成功，但是绑定孩子失败，请登录后绑定孩子");
+            }
             return ResultUtils.success(user);
         }else return ResultUtils.error("1100","注册失败");
     }

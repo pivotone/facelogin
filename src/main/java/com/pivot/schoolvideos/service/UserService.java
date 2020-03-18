@@ -31,6 +31,16 @@ public class UserService {
     }
 
     @Transactional
+    public int getChild(String account){
+        return userMapper.getChild(account);
+    }
+
+    @Transactional
+    public int joinParent(User user){
+        return userMapper.joinParent(user);
+    }
+
+    @Transactional
     public int sigup(User user){
         if(userMapper.getUser(user.getAccount())!=null) return 0x7fffff;
         user.setPassword(md5.getCiphertext(user.getPassword()));

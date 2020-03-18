@@ -16,9 +16,15 @@ public interface UserMapper {
     @Select("select *from user where account = #{account}")
     User getUser(String account);
 
+    @Select("select *from student where tel = #{account}")
+    int getChild(String account);
+
     // 获得所有教师
     @Select("select *from user where roleID = 0")
     List<User> getAllTeacher();
+
+    @Update("update student set parentID = #{userID} where tel = #{account}")
+    int joinParent(User user);
 
     //插入教师和家长注册
     @Insert("insert into user(`username`,`account`,`password`,`sex`,`age`,`roleID`,`facedata`) " +
