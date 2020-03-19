@@ -24,6 +24,9 @@ public interface UserMapper {
     @Update("update student set parentID = #{userID} where tel = #{account}")
     int joinParent(User user);
 
+    @Update("update user set password = #{password} where userID = #{userID}")
+    int alterSecret(User user);
+
     //插入教师和家长注册
     @Insert("insert into user(`username`,`account`,`password`,`sex`,`age`,`roleID`,`facedata`) " +
             "values(#{username},#{account},#{password},#{sex},#{age},#{roleID},#{facedata})")
@@ -35,7 +38,7 @@ public interface UserMapper {
     int setFace(User user);
 
     //更改教师
-    @Update("update user set username = #{username}, password = #{password}, age = #{age}, sex = #{sex}" +
+    @Update("update user set username = #{username}, age = #{age}, sex = #{sex}" +
             " where userID = #{userID} and roleID = 0")
     int updateTeacher(User user);
 }

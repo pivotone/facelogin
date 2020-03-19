@@ -62,11 +62,19 @@ public class UserController {
         }else return ResultUtils.error("1100","注册失败");
     }
 
-    //更新老师信息
+    //更新老师信息，不修改密码
     @PostMapping(value = "/updateTeacher", produces = "application/json;charset=UTF-8")
     public Result updateTeacher(User user){
         int result = userService.updateTeacher(user);
         if(result==0) return ResultUtils.error("1300","更改信息失败");
+        return ResultUtils.success();
+    }
+
+    //修改密码，传参为密码和ID
+    @PostMapping(value = "/secret", produces = "application/json;charset=UTF-8")
+    public Result alterSecret(User user){
+        int result = userService.alterSecret(user);
+        if(result==0) return ResultUtils.error("1600","密码修改失败");
         return ResultUtils.success();
     }
 }

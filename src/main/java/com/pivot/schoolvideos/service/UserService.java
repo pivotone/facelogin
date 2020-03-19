@@ -42,6 +42,12 @@ public class UserService {
     }
 
     @Transactional
+    public int alterSecret(User user){
+        user.setPassword(md5.getCiphertext(user.getPassword()));
+        return userMapper.alterSecret(user);
+    }
+
+    @Transactional
     public int sigup(User user){
         if(userMapper.getUser(user.getAccount())!=null) return 0x7fffff;
         user.setPassword(md5.getCiphertext(user.getPassword()));
@@ -55,7 +61,6 @@ public class UserService {
 
     @Transactional
     public int updateTeacher(User user){
-        user.setPassword(md5.getCiphertext(user.getPassword()));
         return userMapper.updateTeacher(user);
     }
 }
