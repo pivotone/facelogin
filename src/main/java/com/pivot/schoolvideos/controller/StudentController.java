@@ -38,6 +38,13 @@ public class StudentController {
         else return ResultUtils.success(students);
     }
 
+    @PostMapping(value = "/getAll", produces = "application/json;charset=UTF-8")
+    public Result getAllStudent(){
+        List<StuInfo> students = studentService.getAllStudent();
+        if(students.size()==0) return ResultUtils.error("3500","暂无成员");
+        else return ResultUtils.success(students);
+    }
+
     //新增学生
     @PostMapping(value = "/set", produces = "application/json;charset=UTF-8")
     public Result setStudent(String studentName,String studentSex
@@ -54,7 +61,7 @@ public class StudentController {
     @PostMapping(value = "/del", produces = "application/json;charset=UTF-8")
     public Result delStudent(String studentID){
         int result = studentService.delStudent(studentID);
-        if(result == 0) return ResultUtils.error("3200","删除错误");
+        if(result == 0) return ResultUtils.error("3300","删除错误");
         else return ResultUtils.success();
     }
 
@@ -66,7 +73,7 @@ public class StudentController {
         student.setClassID(classID); student.setStudentAge(studentAge); student.setStudentID(studentID);
         student.setStudentSex(studentSex); student.setStudentName(studentName); student.setTel(tel);
         int result = studentService.updateStudent(student);
-        if(result == 0) return ResultUtils.error("3200","修改错误");
+        if(result == 0) return ResultUtils.error("3400","修改错误");
         else return ResultUtils.success();
     }
 }

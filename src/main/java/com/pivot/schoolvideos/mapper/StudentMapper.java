@@ -18,6 +18,10 @@ public interface StudentMapper {
     @Select("select *from `stuinfo` where classID = #{classID}")
     List<StuInfo> getStudents(String classID);
 
+    // get all student
+    @Select("select *from `stuinfo`")
+    List<StuInfo> getAllStudent();
+
     //学生编号，前端不需要处理
     @Select("select *from `stuinfo` where classID = #{classID} order by studentID")
     List<StuInfo> Students(String classID);

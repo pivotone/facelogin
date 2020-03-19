@@ -27,6 +27,11 @@ public class StudentService {
     }
 
     @Transactional
+    public List<StuInfo> getAllStudent(){
+        return studentMapper.getAllStudent();
+    }
+
+    @Transactional
     public int setStudent(Student student){
         student.setStudentID(setStudentID(student.getClassID()));
         return studentMapper.setStudent(student);
