@@ -21,6 +21,9 @@ public interface UserMapper {
     @Select("select *from user where roleID = 0")
     List<User> getAllTeacher();
 
+    @Select("select password from user where userID = #{userID}")
+    User getPwd(User user);
+
     @Update("update student set parentID = #{userID} where tel = #{account}")
     int joinParent(User user);
 
