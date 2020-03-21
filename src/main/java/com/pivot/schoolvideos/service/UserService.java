@@ -43,7 +43,13 @@ public class UserService {
 
     @Transactional
     public int alterSecret(User user,String oldPassword){
-        if(!md5.verify(oldPassword,user.getPassword())) return 0x7ffff;
+        if(!md5.verify(oldPassword,userMapper.getPwd(user).getPassword())) return 0x7ffff;
+        user.setPassword(md5.getCiphertext(user.getPassword()));
+        return userMapper.alterSecret(user);
+    }
+
+    @Transactional
+    public int Secret(User user){
         user.setPassword(md5.getCiphertext(user.getPassword()));
         return userMapper.alterSecret(user);
     }

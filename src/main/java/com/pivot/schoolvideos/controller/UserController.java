@@ -70,12 +70,20 @@ public class UserController {
         return ResultUtils.success();
     }
 
-    //修改密码，传参为密码和ID
+    //修改密码，传参为密码（password）和ID（userID），旧密码（oldPassword）
     @PostMapping(value = "/secret", produces = "application/json;charset=UTF-8")
     public Result alterSecret(User user,String oldPassword){
         int result = userService.alterSecret(user,oldPassword);
         if(result==0) return ResultUtils.error("1600","密码修改失败");
         else if(result == 0x7ffff) return ResultUtils.error("1700","旧密码错误");
+        return ResultUtils.success();
+    }
+
+    //修改密码，传参为密码（password）和ID（userID）
+    @PostMapping(value = "/alter", produces = "application/json;charset=UTF-8")
+    public Result Secret(User user){
+        int result = userService.Secret(user);
+        if(result==0) return ResultUtils.error("1600","密码修改失败");
         return ResultUtils.success();
     }
 }
