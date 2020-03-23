@@ -1,5 +1,7 @@
 package com.pivot.schoolvideos.controller;
 
+import com.pivot.schoolvideos.dao.Mood;
+import com.pivot.schoolvideos.dao.MoodInfo;
 import com.pivot.schoolvideos.dao.StuInfo;
 import com.pivot.schoolvideos.dao.Student;
 import com.pivot.schoolvideos.entity.Result;
@@ -75,5 +77,21 @@ public class StudentController {
         int result = studentService.updateStudent(student);
         if(result == 0) return ResultUtils.error("3400","修改错误");
         else return ResultUtils.success();
+    }
+
+    //查询当天情绪，传递参数为studentID，createDate（查询时间）
+    @PostMapping(value = "/getMood", produces = "application/json;charset=UTF-8")
+    public Result getMood(Mood mood){
+        MoodInfo moodInfo = studentService.getMood(mood);
+        if(moodInfo.getStudentID()==null) return ResultUtils.error("3600","暂无情绪数据");
+        else return ResultUtils.success(moodInfo);
+    }
+
+    //返回7天情绪数值，传递参数为studentID
+    @PostMapping(value = "/getMoods", produces = "application/json;charset=UTF-8")
+    public Result getMoods(String studentID){
+        List<MoodInfo> moodInfo = studentService.getMoods(studentID);
+        if(moodInfo.size()==0) return ResultUtils.error("3600","暂无情绪数据");
+        else return ResultUtils.success(moodInfo);
     }
 }

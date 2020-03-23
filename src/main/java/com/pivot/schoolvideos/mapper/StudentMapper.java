@@ -4,7 +4,6 @@ import com.pivot.schoolvideos.dao.Mood;
 import com.pivot.schoolvideos.dao.MoodInfo;
 import com.pivot.schoolvideos.dao.StuInfo;
 import com.pivot.schoolvideos.dao.Student;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -47,7 +46,7 @@ public interface StudentMapper {
     @Select("select *from moodinfo where studentID = #{studentID} and createDate = #{createDate}")
     MoodInfo getMood(Mood mood);
 
-    @Select("select *from moodinfo where studentID + #{studentID}")
+    @Select("select *from moodinfo where studentID = #{studentID} order by createDate limit 7")
     List<MoodInfo> getMoods(String studentID);
 
 }

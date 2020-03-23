@@ -1,5 +1,7 @@
 package com.pivot.schoolvideos.service;
 
+import com.pivot.schoolvideos.dao.Mood;
+import com.pivot.schoolvideos.dao.MoodInfo;
 import com.pivot.schoolvideos.dao.StuInfo;
 import com.pivot.schoolvideos.dao.Student;
 import com.pivot.schoolvideos.mapper.StudentMapper;
@@ -61,5 +63,15 @@ public class StudentService {
         while(ID.length()<3) ID.insert(0, "0");
         ID.insert(0,classID);
         return String.valueOf(ID);
+    }
+
+    @Transactional
+    public MoodInfo getMood(Mood mood){
+        return studentMapper.getMood(mood);
+    }
+
+    @Transactional
+    public List<MoodInfo> getMoods(String studentID){
+        return studentMapper.getMoods(studentID);
     }
 }
