@@ -44,6 +44,10 @@ public class StudentService {
 
     @Transactional
     public int updateStudent(Student student){
+        student.setID(student.getStudentID());
+        if(!student.getClassID().equals(studentMapper.getStudent(student.getStudentID()).getClassID())) {
+            student.setStudentID(setStudentID(student.getClassID()));
+        }
         return studentMapper.updateStudent(student);
     }
 

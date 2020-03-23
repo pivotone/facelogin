@@ -11,6 +11,15 @@ public class Student {
     private String tel;
     private Date createDate;
     private int parentID;
+    private String ID;
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public int getParentID() {
         return parentID;

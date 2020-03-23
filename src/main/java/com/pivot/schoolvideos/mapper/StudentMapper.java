@@ -2,6 +2,7 @@ package com.pivot.schoolvideos.mapper;
 
 import com.pivot.schoolvideos.dao.StuInfo;
 import com.pivot.schoolvideos.dao.Student;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -38,6 +39,6 @@ public interface StudentMapper {
     //更新学生
     @Update("update `student` set `studentName` = #{studentName},`studentAge` = #{studentAge}," +
             "`studentSex` = #{studentSex},`classID` = #{classID},`tel` = #{tel} " +
-            "where `studentID` = #{studentID}")
+            ",`studentID` = #{studentID} where `studentID` = #{ID}")
     int updateStudent(Student student);
 }
