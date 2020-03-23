@@ -1,5 +1,7 @@
 package com.pivot.schoolvideos.mapper;
 
+import com.pivot.schoolvideos.dao.Mood;
+import com.pivot.schoolvideos.dao.MoodInfo;
 import com.pivot.schoolvideos.dao.StuInfo;
 import com.pivot.schoolvideos.dao.Student;
 import com.sun.xml.internal.bind.v2.model.core.ID;
@@ -41,4 +43,11 @@ public interface StudentMapper {
             "`studentSex` = #{studentSex},`classID` = #{classID},`tel` = #{tel} " +
             ",`studentID` = #{studentID} where `studentID` = #{ID}")
     int updateStudent(Student student);
+
+    @Select("select *from moodinfo where studentID = #{studentID} and createDate = #{createDate}")
+    MoodInfo getMood(Mood mood);
+
+    @Select("select *from moodinfo where studentID + #{studentID}")
+    List<MoodInfo> getMoods(String studentID);
+
 }
