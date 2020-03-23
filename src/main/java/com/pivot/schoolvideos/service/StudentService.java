@@ -66,8 +66,8 @@ public class StudentService {
     }
 
     @Transactional
-    public MoodInfo getMood(Mood mood){
-        return studentMapper.getMood(mood);
+    public MoodInfo getMood(String studentID){
+        return studentMapper.getMood(studentID);
     }
 
     @Transactional

@@ -43,8 +43,8 @@ public interface StudentMapper {
             ",`studentID` = #{studentID} where `studentID` = #{ID}")
     int updateStudent(Student student);
 
-    @Select("select *from moodinfo where studentID = #{studentID} and createDate = #{createDate}")
-    MoodInfo getMood(Mood mood);
+    @Select("select *from moodinfo where studentID = #{studentID} and createDate = #{CURDATE()}")
+    MoodInfo getMood(String studentID);
 
     @Select("select *from moodinfo where studentID = #{studentID} order by createDate limit 7")
     List<MoodInfo> getMoods(String studentID);

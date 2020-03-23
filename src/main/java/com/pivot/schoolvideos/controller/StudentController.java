@@ -79,10 +79,10 @@ public class StudentController {
         else return ResultUtils.success();
     }
 
-    //查询当天情绪，传递参数为studentID，createDate（查询时间）
+    //查询当天情绪，传递参数为studentID
     @PostMapping(value = "/getMood", produces = "application/json;charset=UTF-8")
-    public Result getMood(Mood mood){
-        MoodInfo moodInfo = studentService.getMood(mood);
+    public Result getMood(String studentID){
+        MoodInfo moodInfo = studentService.getMood(studentID);
         if(moodInfo.getStudentID()==null) return ResultUtils.error("3600","暂无情绪数据");
         else return ResultUtils.success(moodInfo);
     }
