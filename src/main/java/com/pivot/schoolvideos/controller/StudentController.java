@@ -79,19 +79,19 @@ public class StudentController {
         else return ResultUtils.success();
     }
 
-    //查询当天情绪，传递参数为studentID
+    //查询当天情绪，传递参数为userID
     @PostMapping(value = "/getMood", produces = "application/json;charset=UTF-8")
-    public Result getMood(String studentID){
-        MoodInfo moodInfo = studentService.getMood(studentID);
-        if(moodInfo.getStudentID()==null) return ResultUtils.error("3600","暂无情绪数据");
-        else return ResultUtils.success(moodInfo);
+    public Result getMood(int userID){
+        MoodInfo moodInfo = studentService.getMood(userID);
+//        if(moodInfo.getStudentID()==null) return ResultUtils.error("3600","暂无情绪数据");
+        return ResultUtils.success(moodInfo);
     }
 
-    //返回7天情绪数值，传递参数为studentID
+    //返回7天情绪数值，传递参数为userID
     @PostMapping(value = "/getMoods", produces = "application/json;charset=UTF-8")
-    public Result getMoods(String studentID){
-        List<MoodInfo> moodInfo = studentService.getMoods(studentID);
-        if(moodInfo.size()==0) return ResultUtils.error("3600","暂无情绪数据");
-        else return ResultUtils.success(moodInfo);
+    public Result getMoods(int userID){
+        List<MoodInfo> moodInfo = studentService.getMoods(userID);
+//        if(moodInfo.size()==0) return ResultUtils.error("3600","暂无情绪数据");
+        return ResultUtils.success(moodInfo);
     }
 }

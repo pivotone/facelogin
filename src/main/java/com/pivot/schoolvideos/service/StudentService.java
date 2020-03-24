@@ -66,12 +66,12 @@ public class StudentService {
     }
 
     @Transactional
-    public MoodInfo getMood(String studentID){
-        return studentMapper.getMood(studentID);
+    public MoodInfo getMood(int userID){
+        return studentMapper.getMood(userID);
     }
 
     @Transactional
-    public List<MoodInfo> getMoods(String studentID){
-        return studentMapper.getMoods(studentID);
+    public List<MoodInfo> getMoods(int userID){
+        return studentMapper.getMoods(userID);
     }
 }
