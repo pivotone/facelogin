@@ -27,6 +27,15 @@ public class UserService {
     }
 
     @Transactional
+    public int delUser(String account){
+        return userMapper.delUser(account);
+    }
+
+    public User getUser(String account){
+        return userMapper.getUser(account);
+    }
+
+    @Transactional
     public List<User> getTeacher(){
         return userMapper.getAllTeacher();
     }

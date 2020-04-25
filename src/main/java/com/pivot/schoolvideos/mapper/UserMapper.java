@@ -44,4 +44,7 @@ public interface UserMapper {
     @Update("update user set username = #{username}, age = #{age}, sex = #{sex}" +
             " where userID = #{userID} and roleID = 0")
     int updateTeacher(User user);
+
+    @Delete("delete from user where account = #{account}")
+    int delUser(String account);
 }
