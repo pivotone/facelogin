@@ -39,7 +39,7 @@ public class FileUploadController {
         String faceData = fileName.substring(0,fileName.lastIndexOf("."));
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         logger.info("文件后缀为："+suffixName);
-        String filePath = "D:/idea_folder/pic/pic";
+        String filePath = "D:/idea_folder/pic/pic/";
         File dest = new File(filePath+fileName);
         if(!dest.getParentFile().exists()){
             dest.getParentFile().mkdirs();
@@ -77,14 +77,21 @@ public class FileUploadController {
         }
         String fileName = file.getOriginalFilename();
         logger.info("文件名为: "+fileName);
-        String suffixName = fileName.substring(fileName.lastIndexOf("."));
-        logger.info("文件后缀为："+suffixName);
+//        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+//        logger.info("文件后缀为："+suffixName);
+        String filePath = "D:/idea_folder/pic/pic/";
+        File dest = new File(filePath+fileName);
+        if(!dest.getParentFile().exists()){
+            dest.getParentFile().mkdirs();
+        }
+        file.transferTo(dest);
         String[] args=new String[] {"python","D:/idea_folder/schoolvideos/src/main/resources/python/facerec.py",fileName};
         Process process=Runtime.getRuntime().exec(args);
         int status=process.waitFor();
         InputStreamReader ir=new InputStreamReader(process.getInputStream());
         LineNumberReader input=new LineNumberReader(ir);
         String result=input.readLine();
+        dest.delete();
         if(status==1){
             return ResultUtils.error("2400","没有发现人脸");
         }else if(result.equals("-1")){

@@ -53,7 +53,7 @@ public class StudentService {
         return studentMapper.updateStudent(student);
     }
 
-    private String setStudentID(String classID){
+    public String setStudentID(String classID){
         int num = 1;
         if(studentMapper.Students(classID).size()!=0){
             num = Integer.parseInt(studentMapper.Students(classID)

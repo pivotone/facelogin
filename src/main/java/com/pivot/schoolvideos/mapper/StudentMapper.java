@@ -46,7 +46,7 @@ public interface StudentMapper {
     @Select("select *from moodinfo where parentID = #{userID} and createDate = CURDATE()")
     MoodInfo getMood(int userID);
 
-    @Select("select *from moodinfo where parentID = #{userID} order by createDate limit 7")
+    @Select("select *from moodinfo where parentID = #{userID} order by createDate desc limit 7")
     List<MoodInfo> getMoods(int userID);
 
 }

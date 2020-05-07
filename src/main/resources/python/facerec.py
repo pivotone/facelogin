@@ -5,19 +5,19 @@ import cv2
 import numpy as np
 
 def facerec(temp_img_name):
-	image = cv2.imread("D://idea_folder//schoolvideos//pic//pic//"+temp_img_name)
+	image = cv2.imread("D://idea_folder//pic//pic//"+temp_img_name)
 	crop_image = image
 	#[34:141,107:214]
-	cv2.imwrite("D://idea_folder//schoolvideos//pic//pic//"+temp_img_name,crop_image)
+	cv2.imwrite("D://idea_folder//pic//pic//"+temp_img_name,crop_image)
 	
-	image = face_recognition.load_image_file("D://idea_folder//schoolvideos//pic//pic//"+temp_img_name)
+	image = face_recognition.load_image_file("D://idea_folder//pic//pic//"+temp_img_name)
 	
 	known_faces=[]
 	filenames=[]
 
-	for filename in os.listdir("D://idea_folder//schoolvideos//pic//picData"):
+	for filename in os.listdir("D://idea_folder//pic//picData"):
 		filenames.append(filename)
-		encoding=np.load("D://idea_folder//schoolvideos//pic//picData//"+filename)
+		encoding=np.load("D://idea_folder//pic//picData//"+filename)
 		known_faces.append(encoding)
 	
 	face_encoding = face_recognition.face_encodings(image)[0]
