@@ -48,7 +48,7 @@ class ClassControllerTest {
     void teachClass() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(classController).build();
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/class/teachGet")
-                .accept(MediaType.APPLICATION_JSON).param("classID","0001"))
+                .accept(MediaType.APPLICATION_JSON).param("userID","33"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
