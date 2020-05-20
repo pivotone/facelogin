@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,6 +36,7 @@ class ClassServiceTest {
         System.out.println(classService.getAll().get(0).getClassID());
     }
 
+    @Transactional
     @Test
     void setClass() {
         Class klass = new Class();
@@ -43,6 +45,7 @@ class ClassServiceTest {
         assert classService.setClass(klass)==1:"error";
     }
 
+    @Transactional
     @Test
     void alterClass() {
         Class klass = new Class();
@@ -52,6 +55,7 @@ class ClassServiceTest {
         assert classService.alterClass(klass)==1:"error";
     }
 
+    @Transactional
     @Test
     void delClass() {
         assert classService.delClass("0009")==1:"error";

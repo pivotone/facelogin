@@ -15,6 +15,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.io.UnsupportedEncodingException;
 
@@ -56,27 +59,68 @@ class ClassControllerTest {
     }
 
     @Test
-    void teachStudent() {
-        System.out.println(classController.teachStudent("33").getData().toString());
+    void teachStudent() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(classController).build();
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/class/teachAll")
+                .accept(MediaType.APPLICATION_JSON).param("userID","33"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 
     @Test
-    void getAll() {
-        System.out.println(classController.getAll());
+    void getAll() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(classController).build();
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/class/getAll"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 
+    @Transactional
     @Test
-    void setClass() {
-        System.out.println(classController.setClass("1","1").getCode());
+    void setClass() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(classController).build();
+        MultiValueMap<String,String> map = new LinkedMultiValueMap<>();
+        map.add("className","1");
+        map.add("teacherID","1");
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/class/set")
+                .accept(MediaType.APPLICATION_JSON)
+                .params(map))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 
+    @Transactional
     @Test
-    void alterClass() {
-        System.out.println(classController.alterClass("0009","xiao1","1").getCode());
+    void alterClass() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(classController).build();
+        MultiValueMap<String,String> map = new LinkedMultiValueMap<>();
+        map.add("classID","0008");
+        map.add("className","medium2");
+        map.add("teacherID","1");
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/class/update")
+                .accept(MediaType.APPLICATION_JSON)
+                .params(map))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 
+    @Transactional
     @Test
-    void delClass() {
-        System.out.println(classController.delClass("0009").getCode());
+    void delClass() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(classController).build();
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/class/del")
+                .accept(MediaType.APPLICATION_JSON).param("classID","0009"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 }

@@ -4,7 +4,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
@@ -14,43 +24,113 @@ class StudentControllerTest {
     @Autowired
     private StudentController studentController;
 
+    private MockMvc mockMvc;
+
     @Test
-    void getStudent() {
-        System.out.println(studentController.getStudent("0001001").getData());
+    void getStudent() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(studentController).build();
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/student/get")
+                .accept(MediaType.APPLICATION_JSON).param("studentID","0001001"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 
     @Test
-    void getStudents() {
-        System.out.println(studentController.getStudents("0001").getMessage());
+    void getStudents() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(studentController).build();
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/student/getClass")
+                .accept(MediaType.APPLICATION_JSON).param("classID","0001"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 
     @Test
-    void getAllStudent() {
-        System.out.println(studentController.getAllStudent().getCode());
+    void getAllStudent() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(studentController).build();
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/student/getAll"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
+    }
+
+    @Transactional
+    @Test
+    void setStudent() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(studentController).build();
+        MultiValueMap<String,String> map = new LinkedMultiValueMap<>();
+        map.add("studentName","老番茄");
+        map.add("classID","0008");
+        map.add("studentSex","男");
+        map.add("studentAge","5");
+        map.add("tel","10982039783");
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/student/set")
+                .accept(MediaType.APPLICATION_JSON)
+                .params(map))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
+    }
+
+    @Transactional
+    @Test
+    void delStudent() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(studentController).build();
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/student/del")
+                .accept(MediaType.APPLICATION_JSON)
+                .param("studentID","0008001"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
+    }
+
+    @Transactional
+    @Test
+    void updateStudent() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(studentController).build();
+        MultiValueMap<String,String> map = new LinkedMultiValueMap<>();
+        map.add("studentID","0008001");
+        map.add("studentName","老番茄");
+        map.add("classID","0008");
+        map.add("studentSex","男");
+        map.add("studentAge","5");
+        map.add("tel","10982039783");
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/student/update")
+                .accept(MediaType.APPLICATION_JSON)
+                .params(map))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 
     @Test
-    void setStudent() {
-        System.out.println("test 1-------");
+    void getMood() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(studentController).build();
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/student/getMood")
+                .accept(MediaType.APPLICATION_JSON)
+                .param("userID","5"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 
     @Test
-    void delStudent() {
-        System.out.println("test 2-------");
-    }
-
-    @Test
-    void updateStudent() {
-        System.out.println("test 3-------");
-    }
-
-    @Test
-    void getMood() {
-        System.out.println(studentController.getMood(5).toString());
-    }
-
-    @Test
-    void getMoods() {
-        System.out.println(studentController.getMoods(5).toString());
+    void getMoods() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(studentController).build();
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/student/getMoods")
+                .accept(MediaType.APPLICATION_JSON)
+                .param("userID","5"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 }
