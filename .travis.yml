@@ -6,6 +6,6 @@ before_install:
 script:
   - echo "Test start---------------------------"
   - date
-  - mvn clean test
+  - mvn test
   - echo "Test end-----------------------------"
   - date
